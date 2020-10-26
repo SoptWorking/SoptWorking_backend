@@ -1,5 +1,6 @@
 const util = require("../modules/util");
 const jwt = require("../modules/jwt");
+const userModel = require("../model/user");
 const TOKEN_EXPIRED = -3;
 const TOKEN_INVALID = -2;
 
@@ -25,8 +26,8 @@ module.exports = {
         message: "유효하지 않은 토큰입니다.",
       });
     } else {
-      req.email = userEmail;
-      req.decode = user;
+      const userInfo = await userModel.findOne({ email: userEmail });
+      req.user = userInfo;
       next();
     }
   },

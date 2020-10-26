@@ -1,7 +1,11 @@
 var express = require("express");
 var router = express.Router();
+
 var profileController = require('../controllers/profile');
 var postController = require('../controllers/post');
+const userController = require("../controllers/user");
+const authMiddleware = require("../middlewares/auth");
+
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -10,9 +14,11 @@ router.get("/", function (req, res, next) {
 
 /* ------회원가입(signup) & 로그인(login)------ */
 // 회원가입
-router.post("/signup", (req, res) => {});
+
+router.post("/signup", userController.signUp);
+
 // 로그인
-router.post("/login", (req, res) => {});
+router.post("/login", userController.signIn);
 
 /* ------게시글(post)------ */
 // 일부 포스트 로딩(post-part)
