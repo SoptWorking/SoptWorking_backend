@@ -1,11 +1,10 @@
 var express = require("express");
 var router = express.Router();
 
-const profileController = require('../controllers/profile');
-const postController = require('../controllers/post');
+const profileController = require("../controllers/profile");
+const postController = require("../controllers/post");
 const userController = require("../controllers/user");
 const authMiddleware = require("../middlewares/auth");
-
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -19,11 +18,14 @@ router.post("/signup", userController.signUp);
 router.post("/login", userController.signIn);
 
 /* ------게시글(post)------ */
-// 일부 포스트 로딩(post-part)
-router.get("/post/post-part", (req, res) => {});
+
 // 해당 파트 포스트 로딩(part)
 // (0-전체[기본] / 1-디자인 / 2-서버 / 3-안드 / 4-ios / 5-웹 )
-router.get("/post/part/:part", (req, res) => {});
+router.get(
+  "/post/part/:part",
+  authMiddleware.checkToken,
+  postController.getPartPost
+);
 // 특정 포스트 로딩
 router.get("/post/post/:id", authMiddleware.checkToken, postController.getPost);
 // 포스트-좋아요(good)
@@ -33,6 +35,10 @@ router.put("/post/good", authMiddleware.checkToken, postController.modifyGood);
 // 기본정보 불러오기
 router.get("/profile", authMiddleware.checkToken, profileController.getProfile);
 // 프로필 등록
-router.post("/profile", authMiddleware.checkToken, profileController.saveProfile);
+router.post(
+  "/profile",
+  authMiddleware.checkToken,
+  profileController.saveProfile
+);
 
 module.exports = router;
