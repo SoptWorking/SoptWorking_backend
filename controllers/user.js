@@ -1,25 +1,4 @@
-<<<<<<< HEAD
-/* ———프로필(profile)——— */
-const { user } = require('../model/user');
-const statusCode = require('../modules/statusCode');
-const resMessage = require('../modules/responseMessage');
-const util = require('../modules/util');
 
-const post = {
-    // 특정 포스트 로딩
-    getPost: (req,res)=>{
-        
-    
-
-    },
-    // 포스트-좋아요(good)
-    modifyGood: (req,res)=>{
-
-    }
-}
-
-module.exports = post;
-=======
 const encrypt = require("../modules/crypto");
 const jwt = require("../modules/jwt");
 const userModel = require("../model/user");
@@ -289,4 +268,3 @@ const userController = {
 };
 
 module.exports = userController;
->>>>>>> 7ae3c2f2d2487a33211bc7438246860d4937814c
