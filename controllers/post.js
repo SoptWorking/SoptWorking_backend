@@ -7,7 +7,6 @@ const util = require('../modules/util');
 const post = {
     // 특정 포스트 로딩
     getPost: (req,res)=>{
-        
 
     },
     // 포스트-좋아요(good)
