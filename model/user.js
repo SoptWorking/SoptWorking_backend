@@ -1,8 +1,5 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-// var imageSchema = new Schema({
-//     imageDate: { type: Date, default: Date.now }
-// })
 
 var userSchema = new Schema(
   {
@@ -18,6 +15,7 @@ var userSchema = new Schema(
     interest: String, // 관심분야
     tendency: Array, // 작업 성향
     question: [Object], // 파트별 질문
+    like: [String],
   },
   { versionKey: "_somethingElse" }
 );
