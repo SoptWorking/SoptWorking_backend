@@ -12,6 +12,7 @@ var userSchema = new Schema(
     college: String, // 학교
     department: String, // 학과
     active: Number, // 활동 기수
+    profile_image: String, // 프로필 이미지
     active_position: String, // OB,YB
     introduction: String, //자기소개
     interest: String, // 관심분야

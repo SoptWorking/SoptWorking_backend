@@ -1,4 +1,3 @@
-
 const encrypt = require("../modules/crypto");
 const jwt = require("../modules/jwt");
 const userModel = require("../model/user");
@@ -85,7 +84,8 @@ const userController = {
       college,
       department,
       active,
-      active_position
+      active_position,
+      part
     ); // 회원 정보 저장
 
     return res.status(200).send(util.success(200, "이메일 전송 완료"));
@@ -103,18 +103,20 @@ const userController = {
     college,
     department,
     active,
-    active_position
+    active_position,
+    part
   ) => {
     var user = new userModel();
     user.email = email;
     user.pw = password;
     user.salt = salt;
     user.name = name;
-    user.birth = birth;
+    user.birth = new Date(birth);
     user.college = college;
     user.department = department;
     user.active = active;
     user.active_position = active_position;
+    user.part = part;
     await user.save();
   },
 
