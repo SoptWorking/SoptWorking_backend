@@ -17,7 +17,6 @@ const userController = {
       const result = await userModel.findOne({
         email: email,
       });
-
       // email이 존재하면
       if (result) {
         // 이메일 인증을 한 경우

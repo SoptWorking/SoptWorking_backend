@@ -1,4 +1,4 @@
-const { user } = require('../model/user');
+const user  = require('../model/user');
 const statusCode = require('../modules/statusCode');
 const resMessage = require('../modules/responseMessage');
 const util = require('../modules/util');
@@ -22,7 +22,35 @@ const profile = {
     },
     // 프로필 등록
     saveProfile: (req,res)=>{
-        const userData = new user(req.data);
+        const {
+            name,
+            birth,
+            college,
+            department,
+            active,
+            active_position,
+            introduction,
+            interest,
+            dream,
+            keywords,
+            tendency,
+            question
+        } = req.body.data;
+        if(!name ||
+           !birth ||
+           !college ||
+           !department ||
+           !active ||
+           !active_position ||
+           !introduction ||
+           !interest ||
+           !dream ||
+           !keywords || 
+           !tendency ||
+           !question)
+            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST,resMessage.NULL_VALUE));
+            // req.data[0].like = 0;
+        const userData = new user(req.body.data);
 
         userData.save((err, userInfo)=> {
             if(err) return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST,resMessage.PROFILE_POST_FAIL));
