@@ -45,5 +45,4 @@ router.post('/profile', (req,res)=>{
 
 });
 
-
 module.exports = router;
