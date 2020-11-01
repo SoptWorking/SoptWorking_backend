@@ -3,10 +3,11 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema(
   {
-    name: String, // 이름 
-    pw: String, // 토큰 
-    salt : String, // 솔트 
-    part: String, // 파트 
+    name: String, // 이름
+    pw: String, // 토큰
+    salt: String, // 솔트
+    email: String,
+    part: String, // 파트
     birth: Date, // 생년월일
     college: String, // 학교
     department: String, // 학과
