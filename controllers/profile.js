@@ -1,4 +1,3 @@
-const user  = require('../model/user');
 const statusCode = require('../modules/statusCode');
 const resMessage = require('../modules/responseMessage');
 const util = require('../modules/util');
@@ -8,20 +7,26 @@ const profile = {
     // 기본정보 불러오기
     getProfile: (req,res)=>{
         
-        const userData = req.user;
+        const user = req.user;
 
         return res.status(statusCode.OK).send(util.success(statusCode.OK,resMessage.PROFILE_GET_SUCCESS,
             {
-                name : userData.name,
-                birth : userData.birth,
-                college : userData.college,
-                department : userData.department,
-                active : userData.active,
-                active_position : userData.active_position
+                name : user.name,
+                birth : user.birth,
+                college : user.college,
+                department : user.department,
+                part : user.part,
+                active : user.active,
+                active_position : user.active_position
             }));
     },
     // 프로필 등록
     saveProfile: (req,res)=>{
+        if(req.file === undefined){
+            profileImg = null;
+        }else{
+            profileImg = req.file.location;
+        }
         const {
             name,
             birth,
@@ -35,7 +40,8 @@ const profile = {
             keywords,
             tendency,
             question
-        } = req.body.data;
+        } = JSON.parse(req.body.Info);
+
         if(!name ||
            !birth ||
            !college ||
@@ -47,17 +53,22 @@ const profile = {
            !dream ||
            !keywords || 
            !tendency ||
-           !question)
+           !question ||
+           !profileImg)
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST,resMessage.NULL_VALUE));
-            // req.data[0].like = 0;
-        const userData = new user(req.body.data);
+            
+            let user = req.user;
+            user.introduction = introduction;
+            user.interest = interest;
+            user.dream = dream;
+            user.keywords = keywords;
+            user.tendency = tendency;
+            user.question = question;
+            user.profileImg = profileImg;
 
-        userData.save((err, userInfo)=> {
+        user.save((err, userInfo)=> {
             if(err) return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST,resMessage.PROFILE_POST_FAIL));
-            return res.status(statusCode.OK).send(util.success(statusCode.OK,resMessage.PROFILE_POST_SUCCESS,
-                {
-
-                }));
+            return res.status(statusCode.OK).send(util.success(statusCode.OK,resMessage.PROFILE_POST_SUCCESS));
         });
     }
 }
