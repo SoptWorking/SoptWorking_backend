@@ -53,7 +53,7 @@ const userController = {
       active,
       active_position,
     } = req.body;
-
+    console.log(email);
     // 파라미터 확인
     if (
       !email ||

@@ -3,9 +3,11 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema(
   {
+    email: String, // 이메일
     name: String, // 이름 
     pw: String, // 토큰 
-    salt : String, // 솔트 
+    salt : String, // 솔트
+    profileImg : String, // 프로필 이미지 
     part: String, // 파트 
     birth: Date, // 생년월일
     college: String, // 학교
