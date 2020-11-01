@@ -3,14 +3,16 @@ const statusCode = require("../modules/statusCode");
 const resMessage = require("../modules/responseMessage");
 const util = require("../modules/util");
 const userModel = require("../model/user");
+
 /* ------게시글(post)------ */
 const post = {
-  // 특정 포스트 로딩
+  // 특정 파트 포스트 로딩
   getPartPost: async (req, res) => {
     const part = req.params.part;
     const result = await userModel.find({ part: part });
     return res.status(200).send(util.success(200, { result: result }));
   },
+  // 특정 포스트(1개) 로딩
   getPost: async (req, res) => {
     const id = req.params.id;
     const result = await userModel.findById(id);
