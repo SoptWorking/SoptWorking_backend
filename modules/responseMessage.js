@@ -25,5 +25,11 @@ module.exports = {
   /* 프로필 */
     PROFILE_GET_SUCCESS: "프로필 기본정보 조회 성공",
     PROFILE_POST_SUCCESS: "프로필 등록 성공",
-    PROFILE_POST_FAIL : "프로필 등록 실패"
+    PROFILE_POST_FAIL : "프로필 등록 실패",
+
+  /* 포스트 */
+  SINGLE_POST_GET_SUCCESS: "특정 포스트 로딩 성공",
+  SINGLE_POST_GET_FAIL : "특정 포스트 로딩 실패",
+  POST_LIKE_MODIFY_SUCCESS: "포스트 좋아요 변경 성공",
+  PART_POST_GET_SUCCESS: "특정 파트 포스트 로딩 성공"
 };
