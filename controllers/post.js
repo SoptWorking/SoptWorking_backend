@@ -12,7 +12,7 @@ const post = {
     const result = await userModel.find({ part: part });
     return res.status(200).send(util.success(200, resMessage.PART_POST_GET_SUCCESS,{ result: result }));
   },
-  // 특정 포스트(1개) 로딩
+  // 특정 포스트(1개) 로딩!
   getPost: async (req, res) => {
     const id = req.params.id;
     const result = await userModel.findById(id);
