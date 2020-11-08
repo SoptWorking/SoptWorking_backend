@@ -5,4 +5,5 @@ module.exports = {
     expiresIn: "15d",
     issuer: "qring",
   },
+  PW: "ehdgns2797",
 };
