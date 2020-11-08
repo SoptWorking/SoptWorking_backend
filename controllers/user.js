@@ -105,6 +105,7 @@ const userController = {
     active_position,
     part
   ) => {
+    console.log(new Date(birth));
     var user = new userModel();
     user.email = email;
     user.pw = password;

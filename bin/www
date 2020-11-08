@@ -7,7 +7,7 @@
 var app = require("../app");
 var debug = require("debug")("soptworking-backend:server");
 var http = require("http");
-
+const mongoPw = require("../config/secretkey");
 /**
  * Get port from environment and store in Express.
  */
@@ -20,7 +20,7 @@ db.once("open", function () {
 });
 mongoose.connect(
   "mongodb+srv://modak:" +
-    "ehdgns2797" +
+    mongoPw.PW +
     "@modoc-mqsht.mongodb.net/SoptWorking_back?retryWrites=true&w=majority",
   { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false }
 );
